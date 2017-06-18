@@ -1,5 +1,6 @@
 package com.fs.app;
 
+import com.fs.annotation.Mapper;
 import com.fs.entity.Person;
 import com.fs.service.PersonService;
 import org.omg.CORBA.PUBLIC_MEMBER;
@@ -14,6 +15,7 @@ import org.springframework.context.annotation.ComponentScan;
  */
 @SpringBootApplication
 @ComponentScan(basePackages = "com.fs")
+@Mapper
 public class SpringBootApp implements CommandLineRunner{
 
     @Autowired
