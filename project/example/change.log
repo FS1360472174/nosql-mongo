@@ -1,0 +1,12 @@
+1. SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+   SLF4J: Defaulting to no-operation (NOP) logger implementation
+
+   报上面的错，在pom.xml引入slf4j-simple,slf4j-api依赖解决了
+
+
+2. 在PersonRepository 加上注解@Repository 不能注入
+
+   不是加上一个@Repoistory就能够扫描掉注入进去，对于含有datasource的repository。需要额外配置，
+   在MongoConfig 中配置@EnableMongoRepositories(basePackages = "com.fs.repository"),这样才回去扫描对应的repository
+
+3. 不能装配静态变量，对于不是spring管理的实例，也无法装配
