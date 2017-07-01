@@ -1,51 +1,53 @@
-package com.fs.config;
+package com.fs.mongo.config;
 
-import com.mongodb.*;
+import com.mongodb.Mongo;
+import com.mongodb.MongoClient;
+import com.mongodb.MongoClientOptions;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.MongoDbFactory;
 import org.springframework.data.mongodb.config.AbstractMongoConfiguration;
-import org.springframework.data.mongodb.core.MongoClientFactoryBean;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
 import org.springframework.data.mongodb.core.convert.DefaultMongoTypeMapper;
 import org.springframework.data.mongodb.core.convert.MappingMongoConverter;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
+import java.net.UnknownHostException;
+
 /**
- * Created by SEELE on 2017/6/18.
+ * Created by fangsheng on 2017/7/1.
+ *
+ * @cnstonefang@gmail.com
  */
 @Configuration
-@EnableMongoRepositories(basePackages = "com.fs.repository")
-public class MongoConfig extends AbstractMongoConfiguration{
-    @Override
-    public String getDatabaseName() {
-        return "test";
-    }
-    @Override
-    public @Bean
-    MongoDbFactory mongoDbFactory() throws Exception{
+@EnableMongoRepositories(basePackages = "com.fs.mongo.dao")
+public class MongoConfig extends AbstractMongoConfiguration {
+
+    @Bean
+    public MongoDbFactory mongoDbFactory() throws UnknownHostException {
         MongoClientOptions options = new MongoClientOptions.Builder().connectionsPerHost(8).build();
         return new SimpleMongoDbFactory(new MongoClient("localhost",options ),"test");
     }
-    @Override
-    public @Bean
-    MongoTemplate mongoTemplate() throws Exception {
-        return new MongoTemplate(mongoDbFactory());
+    // 默认数据库会生成_class字段，需要更改mappingMongoConverter的typeMappper属性值
+    @Bean
+    public MongoTemplate mongoTemplate() throws Exception {
+        return new MongoTemplate(mongoDbFactory(),mappingMongoConverter());
     }
 
-    @Override
-    public @Bean Mongo mongo() throws Exception {
-        // MongoClient 是原生的java driver
+    protected String getDatabaseName() {
+        return "test";
+    }
+
+    @Bean
+    public Mongo mongo() throws Exception {
         return new MongoClient();
     }
-
 
     @Bean
     @Override
     public MappingMongoConverter mappingMongoConverter() throws Exception {
-        MappingMongoConverter converter = super.mappingMongoConverter();
+        MappingMongoConverter converter = new MappingMongoConverter(mongoDbFactory(),this.mongoMappingContext());
         converter.setTypeMapper(new DefaultMongoTypeMapper(null));
         return converter;
     }
