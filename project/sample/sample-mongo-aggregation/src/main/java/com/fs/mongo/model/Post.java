@@ -17,6 +17,7 @@ public class Post {
     private List<String> tags;
     private String contents;
     private Date created;
+    private long total;
 
     public Long getUserId() {
         return userId;
@@ -64,5 +65,13 @@ public class Post {
 
     public void setCreated(Date created) {
         this.created = created;
+    }
+
+    public long getTotal() {
+        return total;
+    }
+
+    public void setTotal(long total) {
+        this.total = total;
     }
 }
