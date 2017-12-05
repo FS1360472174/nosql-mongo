@@ -46,12 +46,12 @@ Soft-State:  软状态,Server 端不保存状态
 
 Eventually Consistency: 最终一致性
 
-![](images/cap.png)
+![](images/cap.PNG)
 
 
 ---
 
-![](images/db-rank.png)
+![](images/db-rank.PNG)
 
 ---
 # 系统架构
@@ -64,15 +64,15 @@ RDBMS 主要是通过主从读写分离，分库分表来解决
 
 单个节点
 
-![](images/mongod.png)
+![](images/mongod.PNG)
 
 复制集(高可用)
 
-![](images/mongo-replicat.png)
+![](images/mongo-replicat.PNG)
 
 sharding(可扩展)
 
-![](images/mongo-cluster.png)
+![](images/mongo-cluster.PNG)
 
 ## Cassandra
 
@@ -98,7 +98,7 @@ range分片会让相近的数据分配在同一个shard上，这样如果进行s
 - tag
 代表的shard key 的一段范围值,比如下图Tag A代表的就是[1,10)
 
-![](images/mongo-tag.png)
+![](images/mongo-tag.PNG)
 
 tag通常是用来隔离数据的，多用于多数据中心架构中。确保相近的数据能够落在物理上相近的shard上。
 
@@ -107,7 +107,7 @@ tag通常是用来隔离数据的，多用于多数据中心架构中。确保�
 ## Cassandra
 一致性hash来分partition
 
-![](images/cassandra-ring.png)
+![](images/cassandra-ring.PNG)
 
 
 
@@ -234,7 +234,7 @@ LSM树整个结构不是有序的，所以不知道数据在什么地方，需�
 
 -  解决多表关联问题
 
-![](images/mongo-model.png)
+![](images/mongo-model.PNG)
 
 - 不需要的字段可以不存
 
