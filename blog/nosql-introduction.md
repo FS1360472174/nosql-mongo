@@ -97,6 +97,10 @@ RDBMS 主要是通过主从读写分离，分库分表来解决
 
 ![](images/mongo-vote.PNG)
 
+<<<<<<< HEAD
+=======
+![](images/mongo-replicat.PNG)
+>>>>>>> 076a2ab4142599431078f2d601fc77143da6745a
 
 sharding(可扩展)
 
