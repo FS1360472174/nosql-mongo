@@ -35,11 +35,7 @@ public class ThreadUtil {
         /*
          * 线程忙加入队列中
          */
-        private final RejectedExecutionHandler handler = new RejectedExecutionHandler() {
-            public void rejectedExecution(final Runnable task, final ThreadPoolExecutor executor) {
-                taskQueue.offer(task);
-            }
-        };
+        private final RejectedExecutionHandler handler = new MyRejectedExecutionHandler();
         /*
          * 线程池
          */
@@ -112,7 +108,14 @@ public class ThreadUtil {
         }
 
         public void shutdown() {
+            System.out.println("shut down");
             taskQueue.clear();
             threadPool.shutdown();
         }
+
+    private class MyRejectedExecutionHandler implements RejectedExecutionHandler {
+        public void rejectedExecution(final Runnable task, final ThreadPoolExecutor executor) {
+            taskQueue.offer(task);
+        }
     }
+}
