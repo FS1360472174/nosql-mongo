@@ -30,6 +30,9 @@ public class PostService
         return postDb.getPeopleAggregationByCategory(userId);
     }
 
+    public Post getPostByUserId(long userId) {
+        return postRepository.findTopByUserId(userId);
+    }
     public Post getPost(long userId, String category, Date created) {
         Post post = new Post();
         post.setUserId(userId);

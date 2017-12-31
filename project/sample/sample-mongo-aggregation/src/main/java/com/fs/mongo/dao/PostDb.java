@@ -25,7 +25,8 @@ public class PostDb {
     public List<Post> getPeopleAggregationByCategory(long userId) {
         MatchOperation match = Aggregation.match(new Criteria("userId").is(userId));
         GroupOperation group  = Aggregation.group("category").count().as("total");
-        ProjectionOperation project =  Aggregation.project("total").and("_id").as("category");
+        ProjectionOperation project =  Aggregation.project("total").and("_id").as("category")
+                .andExclude("_id");
         Aggregation aggregation = Aggregation.newAggregation(match,group,project);
         AggregationResults<Post> results = mongoTemplate.aggregate(aggregation,"post",Post.class);
         return results.getMappedResults();

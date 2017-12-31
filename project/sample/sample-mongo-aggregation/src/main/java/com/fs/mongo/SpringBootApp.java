@@ -30,7 +30,7 @@ public class SpringBootApp implements CommandLineRunner {
     static {
         Properties props = new Properties();
         try {
-            props.load(LogConfiguration.class.getResourceAsStream("/log4j.properties"));
+            props.load(SpringBootApp.class.getResourceAsStream("/log4j.properties"));
         } catch (IOException e) {
             e.printStackTrace();
         }
