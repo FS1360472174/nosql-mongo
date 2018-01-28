@@ -31,6 +31,7 @@ public class PostService
     }
 
     public Post getPostByUserId(long userId) {
+        postRepository.findUserIdByUserId(userId);
         return postRepository.findTopByUserId(userId);
     }
     public Post getPost(long userId, String category, Date created) {
