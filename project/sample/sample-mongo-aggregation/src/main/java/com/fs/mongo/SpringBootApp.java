@@ -43,7 +43,7 @@ public class SpringBootApp implements CommandLineRunner {
         SpringApplication.run(SpringBootApp.class);
     }
     public void run(String... strings) throws Exception {
-        testAggByCategory();
+        // testAggByCategory();
         testRepository();
     }
 
