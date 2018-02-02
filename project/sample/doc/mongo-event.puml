@@ -1,0 +1,29 @@
+@startuml
+
+abstract class ApplicationEvent
+abstract class AbstractMongoEventListener
+interface ApplicationListener
+interface EventListener
+
+note right: EventListener 是jdk1.1提供出来的一个接口，没有任何方法，只是标识事件
+EventListener <|-- ApplicationListener
+note right:这是Spring框架的事件处理
+ApplicationListener <|-- AbstractMongoEventListener
+note right:在onApplicationEvent()方法中根据不同的事件类型，调用不同的方法
+class AbstractMongoEventListener {
+Class<?> domainClass;
+onApplicationEvent();
+onBeforeConvert();
+onBeforeSave();
+onAfterSave();
+onAfterLoad();
+onAfterConvert();
+onAfterDelete();
+onBeforeDelete();
+}
+
+class ApplicationListener {
+void onApplicationEvent();
+}
+
+@enduml
