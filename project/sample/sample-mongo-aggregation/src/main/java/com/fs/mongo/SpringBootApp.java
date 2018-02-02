@@ -39,12 +39,14 @@ public class SpringBootApp implements CommandLineRunner {
     private static final Logger LOG = LoggerFactory.getLogger(SpringBootApp.class);
     @Autowired
     private PostService postService;
+
     public static void main(String[] args) {
         SpringApplication.run(SpringBootApp.class);
     }
     public void run(String... strings) throws Exception {
         // testAggByCategory();
-        testRepository();
+        // testRepository();
+        testSaveEvent();
     }
 
     private  void testAggByCategory(){
@@ -62,5 +64,14 @@ public class SpringBootApp implements CommandLineRunner {
         LOG.info("test repo");
         Post post = postService.getPostByUserId(1);
         LOG.info("repository");
+    }
+
+    private void testSaveEvent() {
+        LOG.info("test save event");
+        List<Post> input = new ArrayList<Post>();
+        input.add(postService.getPost(1,"java",new Date()));
+        input.add(postService.getPost(1,"java",new Date()));
+        postService.savePost(input);
+        LOG.info("test save event finish");
     }
 }
