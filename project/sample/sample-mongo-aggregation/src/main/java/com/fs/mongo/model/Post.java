@@ -1,5 +1,6 @@
 package com.fs.mongo.model;
 
+import com.fs.mongo.annotation.MongoAutoId;
 import lombok.Data;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
@@ -20,6 +21,8 @@ import java.util.List;
 public class Post {
     @Id
     private ObjectId postId;
+    @MongoAutoId
+    private Long internalId;
     private Long userId;
     private String title;
     private String category;
