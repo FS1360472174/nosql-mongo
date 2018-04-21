@@ -2,7 +2,6 @@ package com.fs.mongo.dao;
 
 import com.fs.mongo.annotation.MongoAutoId;
 import com.fs.mongo.model.MongoId;
-import com.mongodb.DBObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
